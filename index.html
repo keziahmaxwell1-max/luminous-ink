@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1216">
+  <meta name="description" content="Luminous Ink by M.L. — Silence, Put Into Words.">
+  <title>Luminous Ink by M.L. | Silence, Put Into Words.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0d1216;
+      --ink-soft: #151c21;
+      --gold: #dfb777;
+      --gold-deep: #b98b4d;
+      --ivory: #f5f0e6;
+      --muted: #b9b2a7;
+      --line: rgba(223,183,119,.25);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--ink); color: var(--ivory); font-family: var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    .site-header {
+      position: sticky; top: 0; z-index: 10; display: flex; align-items: center;
+      justify-content: space-between; gap: 24px; padding: 14px clamp(20px, 6vw, 84px);
+      background: rgba(13,18,22,.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand img { width: 54px; height: 54px; object-fit: contain; }
+    .brand-name { color: var(--gold); font-family: var(--serif); font-size: 25px; letter-spacing: .12em; white-space: nowrap; }
+    .brand-by { color: var(--muted); display: block; font-size: 9px; letter-spacing: .32em; margin-top: 1px; text-align: center; }
+    nav { display: flex; align-items: center; gap: clamp(14px, 2.6vw, 34px); }
+    nav a { color: #e8e0d3; font-size: 12px; letter-spacing: .08em; }
+    nav a:hover { color: var(--gold); }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--line); color: var(--gold); padding: 9px 12px; border-radius: 3px; }
+    .hero {
+      min-height: 650px; display: grid; place-items: center; text-align: center; padding: 90px 22px 100px;
+      background: radial-gradient(ellipse at 50% 42%, rgba(185,139,77,.13), transparent 54%),
+                  linear-gradient(180deg, #0d1216 0%, #10171c 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero:before, .hero:after { content: ""; position: absolute; width: 280px; height: 280px; border: 1px solid rgba(223,183,119,.09); transform: rotate(45deg); }
+    .hero:before { left: -190px; top: 90px; } .hero:after { right: -190px; bottom: 40px; }
+    .hero-inner { max-width: 850px; position: relative; z-index: 1; }
+    .eyebrow { color: var(--gold); font-size: 10px; letter-spacing: .34em; text-transform: uppercase; }
+    h1 { font: 500 clamp(48px, 8vw, 88px)/.98 var(--serif); color: var(--gold); margin: 24px 0 18px; }
+    .tagline { font: italic clamp(22px, 3vw, 31px) var(--serif); color: var(--ivory); margin: 0 0 18px; }
+    .hero-copy { color: #c8c0b4; font-size: 14px; line-height: 1.9; max-width: 580px; margin: 0 auto 34px; }
+    .button { display: inline-block; padding: 14px 25px; background: var(--gold); color: var(--ink); font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; border: 1px solid var(--gold); transition: .2s ease; }
+    .button:hover { background: transparent; color: var(--gold); }
+    .section { padding: 90px clamp(22px, 7vw, 100px); }
+    .section-light { background: var(--ivory); color: var(--ink); }
+    .section-kicker { color: var(--gold-deep); font-size: 10px; letter-spacing: .28em; text-transform: uppercase; }
+    h2 { font: 500 clamp(38px, 5vw, 58px)/1.05 var(--serif); margin: 12px 0 18px; }
+    .section-intro { max-width: 650px; color: #6f6a62; font-size: 14px; line-height: 1.9; }
+    .library-empty { margin-top: 34px; padding: 54px 24px; border: 1px solid rgba(13,18,22,.16); text-align: center; }
+    .library-empty .ornament { color: var(--gold-deep); font: 40px var(--serif); }
+    .library-empty h3 { font: 500 30px var(--serif); margin: 12px 0 8px; }
+    .library-empty p { color: #777168; font-size: 13px; line-height: 1.8; max-width: 470px; margin: auto; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-mark { display: grid; place-items: center; min-height: 300px; border: 1px solid var(--line); background: radial-gradient(circle, rgba(223,183,119,.1), transparent 65%); }
+    .about-mark img { width: min(230px, 65%); }
+    .about-copy { color: #c8c0b4; font: 19px/1.7 var(--serif); }
+    .dedication { background: #090d10; text-align: center; padding: 100px 24px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .dedication .small { color: var(--gold); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; }
+    .dedication blockquote { max-width: 760px; margin: 25px auto 18px; color: var(--ivory); font: italic clamp(30px, 5vw, 48px)/1.2 var(--serif); }
+    .dedication p { color: var(--muted); font: 17px var(--serif); }
+    footer { padding: 28px 22px; text-align: center; color: #8f897f; font-size: 10px; letter-spacing: .12em; }
+    footer span { color: var(--gold); }
+    @media (max-width: 720px) {
+      .site-header { padding: 10px 18px; }
+      .brand img { width: 45px; height: 45px; }
+      .brand-name { font-size: 20px; }
+      .menu-toggle { display: block; }
+      nav { display: none; position: absolute; top: 70px; left: 0; right: 0; padding: 20px; background: #0d1216; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
+      nav.open { display: flex; }
+      .hero { min-height: 590px; }
+      .section { padding-top: 68px; padding-bottom: 68px; }
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .about-mark { min-height: 230px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Luminous Ink home">
+      <img src="logo.png" alt="Luminous Ink monogram logo">
+      <span><span class="brand-name">LUMINOUS INK</span><span class="brand-by">BY M.L.</span></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">MENU</button>
+    <nav id="navigation">
+      <a href="#home">HOME</a><a href="#library">THE LIBRARY</a><a href="#about">ABOUT</a><a href="#dedication">DEDICATION</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="eyebrow">A literary world by M.L.</div>
+        <h1>Luminous Ink</h1>
+        <p class="tagline">Silence, Put Into Words.</p>
+        <p class="hero-copy">Step beyond the familiar and discover worlds shaped by imagination, emotion and the stories waiting between the lines.</p>
+        <a class="button" href="#library">Explore the library</a>
+      </div>
+    </section>
+
+    <section class="section section-light" id="library">
+      <div class="section-kicker">The collection</div>
+      <h2>Enter the library.</h2>
+      <p class="section-intro">Every book is an invitation to somewhere new. Explore stories written and published exclusively by M.L.</p>
+      <div class="library-empty">
+        <div class="ornament">✦</div>
+        <h3>New worlds are taking shape.</h3>
+        <p>The first collection is being prepared. Your next reading journey will begin here.</p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="about-grid">
+        <div>
+          <div class="section-kicker">Behind the words</div>
+          <h2>A world written by M.L.</h2>
+          <p class="about-copy">Luminous Ink is a home for stories imagined, written and shared by one author. A place where quiet thoughts find their voices and every page can open a door to another world.</p>
+        </div>
+        <div class="about-mark"><img src="logo.png" alt="M.L. author mark"></div>
+      </div>
+    </section>
+
+    <section class="dedication" id="dedication">
+      <div class="small">A forever dedication</div>
+      <blockquote>“In loving memory of my first love, my dad.”</blockquote>
+      <p>Maxwell. The name carried forward in M.L.</p>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> LUMINOUS INK BY M.L. · SILENCE, PUT INTO WORDS.</footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const menuButton = document.querySelector(".menu-toggle");
+    const navigation = document.getElementById("navigation");
+    menuButton.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+    navigation.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      navigation.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    }));
+  </script>
+</body>
+</html>
