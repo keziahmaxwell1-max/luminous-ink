@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Library | Luminous Ink</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0d1216;
+      color: #f5f0e6;
+      font-family: Georgia, serif;
+      line-height: 1.8;
+    }
+
+    header {
+      padding: 22px 8%;
+      border-bottom: 1px solid #343a3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header a {
+      color: #e1b373;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .brand {
+      letter-spacing: 3px;
+      font-size: 15px;
+    }
+
+    .library {
+      max-width: 1100px;
+      margin: auto;
+      padding: 75px 25px;
+    }
+
+    .eyebrow {
+      color: #e1b373;
+      letter-spacing: 3px;
+      font-size: 11px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 65px);
+      font-weight: normal;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .intro {
+      color: #aaa49b;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 65px;
+      font-size: 14px;
+    }
+
+    .book-card {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 30px;
+      background: #f5f0e6;
+      color: #151c21;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .book-cover {
+      width: 100%;
+      display: block;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    }
+
+    .book-meta {
+      color: #a17a42;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .book-info h2 {
+      font-size: 36px;
+      font-weight: normal;
+      margin: 12px 0;
+    }
+
+    .book-info p {
+      color: #6f6a62;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .book-info .tagline {
+      color: #a17a42;
+      font-style: italic;
+    }
+
+    .book-link {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 22px;
+      background: #0d1216;
+      color: #e1b373;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .empty-note {
+      text-align: center;
+      color: #aaa49b;
+      font-size: 13px;
+      margin-top: 60px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      border-top: 1px solid #343a3d;
+      color: #aaa49b;
+      font-size: 12px;
+    }
+
+    @media (max-width: 650px) {
+      .library {
+        padding: 50px 20px;
+      }
+
+      .book-card {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 22px;
+      }
+
+      .book-cover {
+        max-width: 260px;
+        margin: auto;
+      }
+
+      .book-info h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html" class="brand">LUMINOUS INK</a>
+    <a href="index.html">← Home</a>
+  </header>
+
+  <main class="library">
+
+    <div class="eyebrow">A world of stories</div>
+
+    <h1>The Library</h1>
+
+    <p class="intro">
+      Step into stories filled with secrets, emotions,
+      unexpected discoveries and worlds waiting to be explored.
+    </p>
+
+    <a href="crimson-trails.html"
+       class="book-card"
+       style="text-decoration:none; color:inherit;">
+
+      <img
+        src="crimson-trails-cover.png"
+        alt="Crimson Trails book cover"
+        class="book-cover"
+      >
+
+      <div class="book-info">
+
+        <div class="book-meta">
+          Mystery · Thriller · Suspense
+        </div>
+
+        <h2>Crimson Trails</h2>
+
+        <p class="book-meta">By M.L.</p>
+
+        <p class="tagline">Mind Who You Trust.</p>
+
+        <p>
+          Enter a world of secrets, uncertainty and hidden truths.
+          Every trail leads somewhere, but not every path reveals
+          what lies ahead.
+        </p>
+
+        <p><strong>Chapters 1–3: Free</strong></p>
+        <p><strong>Chapter 4 onward: Premium</strong></p>
+
+        <span class="book-link">EXPLORE BOOK</span>
+
+      </div>
+
+    </a>
+
+    <p class="empty-note">
+      More stories will find their home here.
+    </p>
+
+  </main>
+
+  <footer>
+    © 2026 Luminous Ink · M.L.
+    <p>Silence, Put Into Words.</p>
+  </footer>
+
+</body>
+</html>
