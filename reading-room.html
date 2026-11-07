@@ -147,12 +147,19 @@
 
 /* HORIZONTAL READING */
 
+body.horizontal-reading main {
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 body.horizontal-reading .story {
+  width: 100%;
   height: 78vh;
   overflow-x: auto;
   overflow-y: hidden;
-  column-width: min(78vw, 650px);
-  column-gap: 48px;
+  column-width: min(90vw, 850px);
+  column-gap: 25px;
   column-fill: auto;
   padding-bottom: 15px;
   touch-action: pan-x;
@@ -171,9 +178,15 @@ body.horizontal-reading .story p {
     padding: 10px 14px;
   }
 
-  body.horizontal-reading .story {
-    height: 75vh;
-    column-width: 78vw;
+  body.horizontal-reading main {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+body.horizontal-reading .story {
+  height: 75vh;
+  column-width: 90vw;
+  column-gap: 18px;
   }
 }
   </style>
