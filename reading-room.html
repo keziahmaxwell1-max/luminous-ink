@@ -148,18 +148,19 @@
 /* HORIZONTAL READING */
 
 body.horizontal-reading main {
+  width: 100%;
   max-width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 body.horizontal-reading .story {
   width: 100%;
-  height: 78vh;
+  height: 75vh;
+  column-width: calc(100vw - 50px);
+  column-gap: 10px;
   overflow-x: auto;
   overflow-y: hidden;
-  column-width: min(90vw, 850px);
-  column-gap: 25px;
   column-fill: auto;
   padding-bottom: 15px;
   touch-action: pan-x;
