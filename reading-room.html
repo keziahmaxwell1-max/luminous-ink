@@ -189,6 +189,28 @@ body.horizontal-reading .story {
   column-width: 90vw;
   column-gap: 18px;
   }
+    /* READING BACKGROUND THEMES */
+
+body.theme-midnight {
+  background: #0d1216;
+  color: #f5f0e6;
+}
+
+body.theme-paper {
+  background: #f5f0e6;
+  color: #25221e;
+}
+
+body.theme-sepia {
+  background: #e8dcc5;
+  color: #493b2c;
+}
+
+/* Keep story text readable in every theme */
+
+body.theme-paper .story strong,
+body.theme-sepia .story strong {
+  color: #8a642f;
 }
   </style>
 </head>
@@ -221,6 +243,17 @@ body.horizontal-reading .story {
 
 <button class="mode-button" id="increaseFont">
   A+
+</button>
+      <button class="mode-button" id="midnightBtn">
+  Midnight
+</button>
+
+<button class="mode-button" id="paperBtn">
+  Warm Paper
+</button>
+
+<button class="mode-button" id="sepiaBtn">
+  Soft Sepia
 </button>
     </div>
 
@@ -336,6 +369,24 @@ body.horizontal-reading .story {
     horizontalBtn.classList.add("active");
     verticalBtn.classList.remove("active");
   });
+  const midnightBtn = document.getElementById("midnightBtn");
+const paperBtn = document.getElementById("paperBtn");
+const sepiaBtn = document.getElementById("sepiaBtn");
+
+midnightBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-paper", "theme-sepia");
+  document.body.classList.add("theme-midnight");
+});
+
+paperBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-midnight", "theme-sepia");
+  document.body.classList.add("theme-paper");
+});
+
+sepiaBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-midnight", "theme-paper");
+  document.body.classList.add("theme-sepia");
+});
   const storyParagraphs = document.querySelectorAll(".story p");
 
 const increaseFont = document.getElementById("increaseFont");
