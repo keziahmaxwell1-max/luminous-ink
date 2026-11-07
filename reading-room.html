@@ -108,6 +108,74 @@
         font-size: 16px;
       }
     }
+    /* READING ROOM CONTROLS */
+
+.reader-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 auto 45px;
+  padding: 18px;
+  border: 1px solid #343a3d;
+  border-radius: 8px;
+}
+
+.reader-toolbar p {
+  width: 100%;
+  text-align: center;
+  color: #aaa49b;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.mode-button {
+  padding: 11px 20px;
+  background: transparent;
+  color: #e1b373;
+  border: 1px solid #a17a42;
+  cursor: pointer;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+
+.mode-button.active {
+  background: #e1b373;
+  color: #0d1216;
+}
+
+/* HORIZONTAL READING */
+
+body.horizontal-reading .story {
+  height: 70vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  column-width: min(78vw, 650px);
+  column-gap: 48px;
+  column-fill: auto;
+  padding-bottom: 15px;
+  touch-action: pan-x;
+}
+
+body.horizontal-reading .story p {
+  break-inside: avoid;
+}
+
+@media (max-width: 600px) {
+  .reader-toolbar {
+    gap: 8px;
+  }
+
+  .mode-button {
+    padding: 10px 14px;
+  }
+
+  body.horizontal-reading .story {
+    height: 65vh;
+    column-width: 78vw;
+  }
+}
   </style>
 </head>
 
@@ -122,6 +190,19 @@
     <div class="chapter-label">Chapter One</div>
     <h1>It Begins</h1>
     <p class="book-title">CRIMSON TRAILS · M.L.</p>
+    <div class="reader-toolbar">
+
+  <p>CHOOSE YOUR READING MODE</p>
+
+  <button class="mode-button active" id="verticalBtn">
+    ↓ Vertical
+  </button>
+
+  <button class="mode-button" id="horizontalBtn">
+    → Horizontal
+  </button>
+
+    </div>
 
     <article class="story">
 
@@ -218,6 +299,23 @@
     © 2026 Luminous Ink · M.L.
     <p>Silence, Put Into Words.</p>
   </footer>
+<script>
+  const verticalBtn = document.getElementById("verticalBtn");
+  const horizontalBtn = document.getElementById("horizontalBtn");
 
+  verticalBtn.addEventListener("click", function () {
+    document.body.classList.remove("horizontal-reading");
+
+    verticalBtn.classList.add("active");
+    horizontalBtn.classList.remove("active");
+  });
+
+  horizontalBtn.addEventListener("click", function () {
+    document.body.classList.add("horizontal-reading");
+
+    horizontalBtn.classList.add("active");
+    verticalBtn.classList.remove("active");
+  });
+</script>
 </body>
                    </html>
