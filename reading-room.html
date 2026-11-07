@@ -322,23 +322,27 @@ body.horizontal-reading .story p {
     horizontalBtn.classList.add("active");
     verticalBtn.classList.remove("active");
   });
-  const story = document.querySelector(".story");
-const decreaseFont = document.getElementById("decreaseFont");
-const increaseFont = document.getElementById("increaseFont");
+  const storyParagraphs = document.querySelectorAll(".story p");
 
-let currentFontSize = 17;
+let currentFontSize = 16;
 
 increaseFont.addEventListener("click", function () {
   if (currentFontSize < 26) {
     currentFontSize += 1;
-    story.style.fontSize = currentFontSize + "px";
+
+    storyParagraphs.forEach(function (paragraph) {
+      paragraph.style.fontSize = currentFontSize + "px";
+    });
   }
 });
 
 decreaseFont.addEventListener("click", function () {
   if (currentFontSize > 12) {
     currentFontSize -= 1;
-    story.style.fontSize = currentFontSize + "px";
+
+    storyParagraphs.forEach(function (paragraph) {
+      paragraph.style.fontSize = currentFontSize + "px";
+    });
   }
 });
 </script>
