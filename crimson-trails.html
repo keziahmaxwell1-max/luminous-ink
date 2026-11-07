@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crimson Trails | Luminous Ink</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0d1216;
+      color: #f5f0e6;
+      font-family: Georgia, serif;
+      line-height: 1.8;
+    }
+
+    header {
+      padding: 25px 8%;
+      border-bottom: 1px solid #343a3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header a {
+      color: #e1b373;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .brand {
+      letter-spacing: 3px;
+      font-size: 15px;
+    }
+
+    .book-page {
+      max-width: 1050px;
+      margin: auto;
+      padding: 75px 25px;
+    }
+
+    .book-hero {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .cover {
+      width: 100%;
+      box-shadow: 0 15px 45px #000;
+    }
+
+    .eyebrow {
+      color: #e1b373;
+      letter-spacing: 3px;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 65px);
+      line-height: 1.15;
+      margin: 18px 0;
+      font-weight: normal;
+    }
+
+    .tagline {
+      color: #e1b373;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .details {
+      color: #c4bdb1;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .section {
+      margin-top: 85px;
+      border-top: 1px solid #343a3d;
+      padding-top: 35px;
+    }
+
+    h2 {
+      font-size: 30px;
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+
+    .placeholder {
+      color: #aaa49b;
+      font-style: italic;
+    }
+
+    .chapter {
+      padding: 20px 0;
+      border-bottom: 1px solid #343a3d;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .free {
+      color: #e1b373;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .premium {
+      color: #aaa49b;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #aaa49b;
+      font-size: 12px;
+      border-top: 1px solid #343a3d;
+    }
+
+    @media (max-width: 650px) {
+      .book-hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .cover {
+        max-width: 270px;
+        margin: auto;
+      }
+
+      .book-page {
+        padding-top: 45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html" class="brand">LUMINOUS INK</a>
+    <a href="index.html">← Back to Library</a>
+  </header>
+
+  <main class="book-page">
+
+    <div class="book-hero">
+
+      <img
+        src="crimson-trails-cover.png"
+        alt="Crimson Trails book cover"
+        class="cover"
+      >
+
+      <div>
+        <div class="eyebrow">Mystery · Thriller · Suspense</div>
+
+        <h1>Crimson Trails</h1>
+
+        <p class="tagline">Mind Who You Trust.</p>
+
+        <p class="details">
+          Written by M.L.<br>
+          Published by Luminous Ink
+        </p>
+
+        <p>
+          Every story has secrets waiting to be uncovered.
+          Every trail leads somewhere.
+          But not every truth is what it seems.
+        </p>
+      </div>
+
+    </div>
+
+    <section class="section">
+      <div class="eyebrow">Discover the story</div>
+      <h2>Synopsis</h2>
+
+      <p class="placeholder">
+        The official synopsis will appear here.
+      </p>
+    </section>
+
+    <section class="section" id="chapters">
+      <div class="eyebrow">The reading room</div>
+      <h2>Chapters</h2>
+
+      <div class="chapter">
+        <span>Chapter 1</span>
+        <span class="free">Free</span>
+      </div>
+
+      <div class="chapter">
+        <span>Chapter 2</span>
+        <span class="free">Free</span>
+      </div>
+
+      <div class="chapter">
+        <span>Chapter 3</span>
+        <span class="free">Free</span>
+      </div>
+
+      <div class="chapter">
+        <span>Chapter 4 onward</span>
+        <span class="premium">Premium</span>
+      </div>
+
+      <p class="placeholder" style="margin-top: 25px;">
+        The reading room is being prepared.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Luminous Ink · M.L.
+    <p>Silence, Put Into Words.</p>
+  </footer>
+
+</body>
+</html>
