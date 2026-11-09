@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Broken Rhythm | Crimson Trails</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0d1216;
+      color: #f5f0e6;
+      font-family: Georgia, serif;
+      line-height: 2;
+    }
+
+    header {
+      padding: 22px 8%;
+      border-bottom: 1px solid #343a3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    header a {
+      color: #e1b373;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .brand {
+      letter-spacing: 3px;
+    }
+
+    main {
+      max-width: 780px;
+      margin: auto;
+      padding: 75px 25px;
+    }
+
+    .chapter-label {
+      color: #e1b373;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 55px);
+      font-weight: normal;
+      text-align: center;
+      margin: 15px 0 10px;
+    }
+
+    .book-title {
+      text-align: center;
+      color: #aaa49b;
+      font-size: 13px;
+      margin-bottom: 65px;
+    }
+
+    .story p {
+      margin-bottom: 25px;
+      font-size: 17px;
+    }
+
+    .story strong {
+      color: #e1b373;
+    }
+
+    .navigation {
+      margin-top: 75px;
+      padding-top: 30px;
+      border-top: 1px solid #343a3d;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .navigation a {
+      color: #e1b373;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      border-top: 1px solid #343a3d;
+      color: #aaa49b;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 50px 23px;
+      }
+
+      .story p {
+        font-size: 16px;
+      }
+    }
+    /* READING ROOM CONTROLS */
+
+.reader-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 auto 45px;
+  padding: 18px;
+  border: 1px solid #343a3d;
+  border-radius: 8px;
+}
+
+.reader-toolbar p {
+  width: 100%;
+  text-align: center;
+  color: #aaa49b;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.mode-button {
+  padding: 11px 20px;
+  background: transparent;
+  color: #e1b373;
+  border: 1px solid #a17a42;
+  cursor: pointer;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+
+.mode-button.active {
+  background: #e1b373;
+  color: #0d1216;
+}
+
+/* HORIZONTAL READING */
+
+body.horizontal-reading main {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+body.horizontal-reading .story {
+  width: 100%;
+  height: 75vh;
+  column-width: calc(100vw - 50px);
+  column-gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  column-fill: auto;
+  padding-bottom: 15px;
+  touch-action: pan-x;
+}
+
+body.horizontal-reading .story p {
+  break-inside: avoid;
+}
+
+@media (max-width: 600px) {
+  .reader-toolbar {
+    gap: 8px;
+  }
+
+  .mode-button {
+    padding: 10px 14px;
+  }
+
+  body.horizontal-reading main {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+body.horizontal-reading .story {
+  height: 75vh;
+  column-width: 90vw;
+  column-gap: 18px;
+  }
+    /* READING BACKGROUND THEMES */
+
+body.theme-midnight {
+  background: #0d1216;
+  color: #f5f0e6;
+}
+
+body.theme-paper {
+  background: #f5f0e6;
+  color: #25221e;
+}
+
+body.theme-sepia {
+  background: #e8dcc5;
+  color: #493b2c;
+}
+
+/* Keep story text readable in every theme */
+
+body.theme-paper .story strong,
+body.theme-sepia .story strong {
+  color: #8a642f;
+}
+  /* READING PROGRESS */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 5px;
+  background: #343a3d;
+  overflow: hidden;
+  margin: 0;
+}
+
+.reading-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #e1b373;
+  transition: width 0.2s ease;
+}
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html" class="brand">LUMINOUS INK</a>
+    <a href="book-page.html">Back to Book Title</a>
+  </header>
+
+  <main>
+    <div class="chapter-label">CHAPTER THREE</div>
+    <h1>The Broken Rhythm</h1>
+    <p class="book-title">Crimson Trails · M.L.</p>
+    <div class="reading-progress">
+  <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+    <div class="reader-toolbar">
+
+  <p>CHOOSE YOUR READING MODE</p>
+
+  <button class="mode-button active" id="verticalBtn">
+    ↓ Vertical
+  </button>
+
+  <button class="mode-button" id="horizontalBtn">
+    → Horizontal
+  </button>
+<button class="mode-button" id="decreaseFont">
+  A−
+</button>
+
+<button class="mode-button" id="increaseFont">
+  A+
+</button>
+      <button class="mode-button" id="midnightBtn">
+  Midnight
+</button>
+
+<button class="mode-button" id="paperBtn">
+  Warm Paper
+</button>
+
+<button class="mode-button" id="sepiaBtn">
+  Soft Sepia
+</button>
+    </div>
+
+    <article class="story">
+
+  <p>
+    The interrogation room at the precinct was the antithesis of Tirian's office. Here, the air was heavy with the smell of cheap coffee, stale sweat, and the sharp, metallic tang of fear. Under the harsh, buzzing fluorescent lights, Raphael's usual composure was beginning to fray, though he concealed it behind a jagged smile.
+  </p>
+
+  <p>
+    "A poem, Raphael? Really?" Officer Vance slammed a folder onto the table, leaning in so close that Raphael could smell the mints masking his tobacco breath. "You argue with Mark Thorne in plain sight of fifty people, he turns up dead with a theatrical signature, and you expect us to believe you were just practising your 'artistic expression'?"
+  </p>
+
+  <p>
+    "I am a patron of the arts, Officer Vance, not a butcher," Raphael sneered, though his fingers twitched against the cold metal of the table. "Thorne was a boorish pragmatist. Killing him would imply I found him interesting enough to erase."
+  </p>
+
+  <p>
+    Officer Vance let out a harsh, humourless laugh. "Save the philosophical grandstanding for your therapist. Speaking of Maxwell, he can't shield you here. We found the monowire filament in the alleyway behind the gala. The exact gauge used in Thorne's murder. And your alibi for that specific ten-minute window is a ghost."
+  </p>
+
+  <p>
+    Raphael leaned back, his eyes narrowing. "The city is full of ghosts, Officer Vance. You're just too blind to see the ones pulling the strings."
+  </p>
+
+  <p>
+    Outside the precinct, the shadow known as Arin remained entirely at large, a phantom walking the Sink while the police built a flawless cage around the wrong man. The execution of Mark Thorne had been meticulous, and whoever Arin truly was, he had left behind a narrative that the police were blindly following, completely unaware of the real threat lurking in the city's corners.
+  </p>
+
+  <div class="scene-break">♦️ ♦️ ♦️</div>
+
+  <p>
+    The atmosphere in the Maxwell penthouse was suffocatingly quiet when Tirian returned. He hung his coat with measured precision, smoothing out a microscopic wrinkle on the lapel before turning towards the living area.
+  </p>
+
+  <p>
+    Elara was there, but she wasn't slumped in exhaustion as she had been the night before. She was glowing, her cheeks flushed with an energy Tirian hadn't seen in months. A single sheet of elegant paper lay on the glass coffee table beside her glowing phone.
+  </p>
+
+  <p>
+    "You look... altered," Tirian observed, his voice maintaining its characteristic low-frequency hum. He sat opposite her, his posture perfectly erect.
+  </p>
+
+  <p>
+    "He replied, Tirian," Elara said, a breathless laugh escaping her lips. "The man I wrote the poem for. The one who left me on read for three agonising weeks. He finally reached out. He asked me out on a date tonight."
+  </p>
+
+  <p>
+    Tirian's hand paused, hovering an inch above his knee before settling down. A rare, complicated knot tightened in his chest. It wasn't jealousy in the conventional human sense. Tirian viewed emotions as clinical data, but this was a profound, jarring dissonance.
+  </p>
+
+  <p>
+    "A sudden shift in behaviour usually indicates a change in external variables," Tirian said smoothly, masking a sharp spike of analytical concern running through his mind. "A man who ignores a gesture of vulnerability for weeks, only to abruptly capitalise on it, is driven by utility, not affection. Who is he, Elara?"
+  </p>
+
+  <p>
+    Elara smiled, picking up her phone and staring at the screen with an expression that made Tirian's internal pulse quicken with protective curiosity.
+  </p>
+
+  <p>
+    "You probably know him, actually. Or at least, you've crossed paths. His name is Officer Vance."
+  </p>
+
+  <p>
+    The sterile air in the penthouse suddenly felt heavy, like the atmosphere before a lightning strike.
+  </p>
+
+  <p>
+    Officer Vance. The bulldog detective currently trying to pin Arin's masterpiece on Raphael. The man who had barged into Tirian's office hours earlier, demanding answers.
+  </p>
+
+  <p>
+    "An interesting choice," Tirian murmured, his expression a flawless mask of mild, sibling-like concern. "Men of the law tend to have very rigid, volatile psychological profiles. Are you certain you want to invite that kind of chaos into your space?"
+  </p>
+
+  <p>
+    "Chaos is exactly what I need right now," Elara said, standing up to prepare for the evening, completely missing the dark, analytical depth in her brother's eyes. "A little danger keeps the system alive, right?"
+  </p>
+
+  <p>
+    As she left the room, Tirian remained completely still. Officer Vance was stepping directly into their family's orbit, bringing the volatile tension of the Thorne murder investigation straight to their doorstep.
+  </p>
+
+  <div class="scene-break">♦️ ♦️ ♦️</div>
+
+  <p>
+    An hour later, Tirian stood in the lobby of the central precinct. He was the picture of professional concern, a distinguished therapist checking on the welfare of a high-profile client.
+  </p>
+
+  <p>
+    When Officer Vance walked out of the interrogation room, loosening his tie, he stopped dead in his tracks upon seeing Tirian.
+  </p>
+
+  <p>
+    "Maxwell," Officer Vance grunted, crossing his arms. "If you're here to post bail for your boy, save your breath. He's staying the night."
+  </p>
+
+  <p>
+    "I am not here as legal counsel, Officer Vance," Tirian replied, stepping forward with a calm, stabilising presence that seemed to quiet the chaotic energy of the lobby. "I am here out of professional duty. Raphael's psychological state is fragile. Under intense duress, his mind may manufacture false compliance simply to escape the stimulus of interrogation."
+  </p>
+
+  <p>
+    Officer Vance scoffed, but Tirian's calm tone held his attention.
+  </p>
+
+  <p>
+    "Are you profiling your own patient for me?"
+  </p>
+
+  <p>
+    "I am profiling the human mind," Tirian said, his eyes locking onto Officer Vance's with a chilling, clinical intensity. "The person who killed Mark Thorne, this Arin, is not a man who breaks under bright lights. He is a ghost of pure efficiency. He doesn't act out of anger or petty arguments like Raphael. He acts out of cold, geometric necessity. He leaves a signature because he views his actions as art, and an artist never allows someone else to take credit for his masterpiece indefinitely."
+  </p>
+
+  <p>
+    Officer Vance stared at Tirian, a faint shiver running down his spine that he couldn't quite explain. The therapist's analysis was terrifyingly accurate, yet completely detached.
+  </p>
+
+  <p>
+    "You sound like you admire him," Officer Vance muttered, narrowing his eyes.
+  </p>
+
+  <p>
+    "I understand human behaviour," Tirian corrected smoothly, a polite, vacant smile touching his lips. "And as a professional, I am advising you that keeping Raphael here is chasing a shadow. You are looking for a loud man, Officer Vance. You should be looking for the quietest room in the city."
+  </p>
+
+  <p>
+    Officer Vance's phone buzzed in his pocket. He glanced down, his expression softening slightly as he saw the notification. He looked back up at Tirian, clearing his throat.
+  </p>
+
+  <p>
+    "Right. Well, the quiet rooms don't leave filaments in the alley. I have a prior engagement tonight, Maxwell. We'll handle your patient by the book."
+  </p>
+
+  <p>
+    "Of course," Tirian said, stepping back and offering a polite nod. "Enjoy your evening, Officer Vance. I hope your date provides the... breakthrough you're looking for."
+  </p>
+
+  <p>
+    As Officer Vance turned and walked away, adjusting his jacket for his meeting with Elara, Tirian watched him go. The detective thought he was hunting a killer, and thought he was courting a beautiful woman. In reality, he was walking straight into a dangerous web where the lines between the law, the therapist, and the elusive killer Arin were about to become terrifyingly blurred.
+  </p>
+
+    </article>
+
+    <div class="navigation">
+  <a href="chapter-2.html">← Previous Chapter</a>
+
+  <span>Chapter 3 of Crimson Trails</span>
+
+  <a href="crimson-trails.html">Book details</a>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 Luminous Ink · M.L.
+    <p>Silence, Put Into Words.</p>
+  </footer>
+<script>
+  const progressBar = document.getElementById("progressBar");
+const story = document.querySelector(".story");
+
+function updateReadingProgress() {
+  if (document.body.classList.contains("horizontal-reading")) {
+    const maxScroll = story.scrollWidth - story.clientWidth;
+
+    const progress = maxScroll > 0
+      ? (story.scrollLeft / maxScroll) * 100
+      : 0;
+
+    progressBar.style.width = progress + "%";
+  } else {
+    const storyTop = story.getBoundingClientRect().top + window.scrollY;
+    const maxScroll = story.scrollHeight - window.innerHeight;
+
+    const progress = maxScroll > 0
+      ? ((window.scrollY - storyTop) / maxScroll) * 100
+      : 0;
+
+    progressBar.style.width =
+      Math.min(100, Math.max(0, progress)) + "%";
+  }
+}
+
+window.addEventListener("scroll", updateReadingProgress);
+story.addEventListener("scroll", updateReadingProgress);
+  const verticalBtn = document.getElementById("verticalBtn");
+  const horizontalBtn = document.getElementById("horizontalBtn");
+
+  verticalBtn.addEventListener("click", function () {
+    document.body.classList.remove("horizontal-reading");
+
+    verticalBtn.classList.add("active");
+    horizontalBtn.classList.remove("active");
+  });
+
+  horizontalBtn.addEventListener("click", function () {
+    document.body.classList.add("horizontal-reading");
+
+    horizontalBtn.classList.add("active");
+    verticalBtn.classList.remove("active");
+  });
+  const midnightBtn = document.getElementById("midnightBtn");
+const paperBtn = document.getElementById("paperBtn");
+const sepiaBtn = document.getElementById("sepiaBtn");
+
+midnightBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-paper", "theme-sepia");
+  document.body.classList.add("theme-midnight");
+});
+
+paperBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-midnight", "theme-sepia");
+  document.body.classList.add("theme-paper");
+});
+
+sepiaBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-midnight", "theme-paper");
+  document.body.classList.add("theme-sepia");
+});
+  const storyParagraphs = document.querySelectorAll(".story p");
+
+const increaseFont = document.getElementById("increaseFont");
+const decreaseFont = document.getElementById("decreaseFont");
+
+let currentFontSize = 16;
+
+increaseFont.addEventListener("click", function () {
+  if (currentFontSize < 26) {
+    currentFontSize += 1;
+
+    storyParagraphs.forEach(function (paragraph) {
+      paragraph.style.fontSize = currentFontSize + "px";
+    });
+  }
+});
+
+decreaseFont.addEventListener("click", function () {
+  if (currentFontSize > 12) {
+    currentFontSize -= 1;
+
+    storyParagraphs.forEach(function (paragraph) {
+      paragraph.style.fontSize = currentFontSize + "px";
+    });
+  }
+});
+</script>
+</body>
+</html>
