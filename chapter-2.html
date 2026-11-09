@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Veridian Thorn | Crimson Trails</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0d1216;
+      color: #f5f0e6;
+      font-family: Georgia, serif;
+      line-height: 2;
+    }
+
+    header {
+      padding: 22px 8%;
+      border-bottom: 1px solid #343a3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    header a {
+      color: #e1b373;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .brand {
+      letter-spacing: 3px;
+    }
+
+    main {
+      max-width: 780px;
+      margin: auto;
+      padding: 75px 25px;
+    }
+
+    .chapter-label {
+      color: #e1b373;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 55px);
+      font-weight: normal;
+      text-align: center;
+      margin: 15px 0 10px;
+    }
+
+    .book-title {
+      text-align: center;
+      color: #aaa49b;
+      font-size: 13px;
+      margin-bottom: 65px;
+    }
+
+    .story p {
+      margin-bottom: 25px;
+      font-size: 17px;
+    }
+
+    .story strong {
+      color: #e1b373;
+    }
+
+    .navigation {
+      margin-top: 75px;
+      padding-top: 30px;
+      border-top: 1px solid #343a3d;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .navigation a {
+      color: #e1b373;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      border-top: 1px solid #343a3d;
+      color: #aaa49b;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 50px 23px;
+      }
+
+      .story p {
+        font-size: 16px;
+      }
+    }
+    /* READING ROOM CONTROLS */
+
+.reader-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 auto 45px;
+  padding: 18px;
+  border: 1px solid #343a3d;
+  border-radius: 8px;
+}
+
+.reader-toolbar p {
+  width: 100%;
+  text-align: center;
+  color: #aaa49b;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.mode-button {
+  padding: 11px 20px;
+  background: transparent;
+  color: #e1b373;
+  border: 1px solid #a17a42;
+  cursor: pointer;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+
+.mode-button.active {
+  background: #e1b373;
+  color: #0d1216;
+}
+
+/* HORIZONTAL READING */
+
+body.horizontal-reading main {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+body.horizontal-reading .story {
+  width: 100%;
+  height: 75vh;
+  column-width: calc(100vw - 50px);
+  column-gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  column-fill: auto;
+  padding-bottom: 15px;
+  touch-action: pan-x;
+}
+
+body.horizontal-reading .story p {
+  break-inside: avoid;
+}
+
+@media (max-width: 600px) {
+  .reader-toolbar {
+    gap: 8px;
+  }
+
+  .mode-button {
+    padding: 10px 14px;
+  }
+
+  body.horizontal-reading main {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+body.horizontal-reading .story {
+  height: 75vh;
+  column-width: 90vw;
+  column-gap: 18px;
+  }
+    /* READING BACKGROUND THEMES */
+
+body.theme-midnight {
+  background: #0d1216;
+  color: #f5f0e6;
+}
+
+body.theme-paper {
+  background: #f5f0e6;
+  color: #25221e;
+}
+
+body.theme-sepia {
+  background: #e8dcc5;
+  color: #493b2c;
+}
+
+/* Keep story text readable in every theme */
+
+body.theme-paper .story strong,
+body.theme-sepia .story strong {
+  color: #8a642f;
+}
+  /* READING PROGRESS */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 5px;
+  background: #343a3d;
+  overflow: hidden;
+  margin: 0;
+}
+
+.reading-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #e1b373;
+  transition: width 0.2s ease;
+}
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html" class="brand">LUMINOUS INK</a>
+    <a href="crimson-trails.html">Back to Crimson Trails</a>
+  </header>
+
+  <main>
+    <div class="chapter-label">CHAPTER TWO</div>
+    <h1>The Veridian Thorn</h1>
+    <p class="book-title">Crimson Trails · M.L.</p>
+    <div class="reading-progress">
+  <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+    <div class="reader-toolbar">
+
+  <p>CHOOSE YOUR READING MODE</p>
+
+  <button class="mode-button active" id="verticalBtn">
+    ↓ Vertical
+  </button>
+
+  <button class="mode-button" id="horizontalBtn">
+    → Horizontal
+  </button>
+<button class="mode-button" id="decreaseFont">
+  A−
+</button>
+
+<button class="mode-button" id="increaseFont">
+  A+
+</button>
+      <button class="mode-button" id="midnightBtn">
+  Midnight
+</button>
+
+<button class="mode-button" id="paperBtn">
+  Warm Paper
+</button>
+
+<button class="mode-button" id="sepiaBtn">
+  Soft Sepia
+</button>
+    </div>
+
+    <article class="story">
+
+  <p>
+    The morning air in the Maxwell penthouse was thin and carried the faint scent of expensive, sterile ozone. Tirian moved through the kitchen with an almost unnerving silence. He didn't simply pour tea; he monitored the steeping time with a stopwatch, his eyes fixed on the swirling amber leaves as though they held the secrets of a patient's psyche.
+  </p>
+
+  <p>
+    "You're doing it again," Elara's voice cracked through the quiet. She slumped into a chair, her silk robe trailing behind her. "The staring. It's just tea, Tirian."
+  </p>
+
+  <p>
+    "Precision is never 'just' anything, Elara," Tirian replied, his voice a smooth, low-frequency hum. He placed the cup before her.
+  </p>
+
+  <p>
+    "How is your head? You stayed up late reading the local tabloids again."
+  </p>
+
+  <p>
+    "I was looking at the guest list for the Thorne gala," she sighed, rubbing her temples. "I have my own date tonight at L'Eclat. High-class, high-stakes, and likely high-boredom. I'm already exhausted just thinking about the 'mask' I have to wear."
+  </p>
+
+  <p>
+    Tirian tilted his head, his expression perfectly neutral. "Then wear a comfortable one. One that doesn't slip."
+  </p>
+
+  <div class="scene-break">♦️ ♦️ ♦️</div>
+
+  <p>
+    Hours later, the sterile morning had dissolved into the velvet shadows of the evening. At L'Eclat, a symphony of clinking silver and whispered betrayals filled the room. Across from Elara, a man named Julian, an investor with more money than personality, was deep into a monologue about his influence in the Sink.
+  </p>
+
+  <p>
+    "And so I told him, if the shipment isn't in Eldoria by tomorrow, the contract is void," Julian laughed, his eyes searching Elara's face for admiration.
+  </p>
+
+  <p>
+    Elara rested her chin on her hand, her eyes glazed with a carefully maintained expression of simulated interest.
+  </p>
+
+  <p>
+    "Fascinating, Julian. Truly. But I'm afraid my system is hitting a wall."
+  </p>
+
+  <p>
+    "Already?" Julian pouted. "The night is young."
+  </p>
+
+  <p>
+    "Actually," Elara said, her voice dropping into a tired, final tone, "I haven't rested since 5:00 AM. The stress of the week is catching up with me. It's obvious I'm not going to be the company you deserve tonight."
+  </p>
+
+  <p>
+    She stood, her movement sharp and deliberate.
+  </p>
+
+  <p>
+    "I think it's best if I head home."
+  </p>
+
+  <p>
+    As Elara stepped out into the cool night air, the world of the elite was reaching its peak at the Thorne gala, miles away.
+  </p>
+
+  <div class="scene-break">♦️ ♦️ ♦️</div>
+
+  <p>
+    Mark Thorne, flushed with wine and power, eventually excused himself to the executive restroom. It was a vault of white marble and silence. He stood before the mirror, adjusting his silk tie and admiring the mask of a powerful man.
+  </p>
+
+  <p>
+    He didn't hear the door. He didn't hear a footstep.
+  </p>
+
+  <p>
+    In the mirror's reflection, a shadow detached itself from the corner. Arin appeared like a glitch in the light. Before Mark could react, the assassin had him trapped. Arin was a ghost of pure efficiency. He said nothing, carrying out his task with chilling precision. Mark's eyes widened as he caught sight of the cold gaze behind him in the mirror.
+  </p>
+
+  <p>
+    When Mark was no longer moving, Arin lowered him to the marble floor. He reached into his pocket and retrieved a single, sharp Veridian Thorn. With the steady hand of a master, he placed it at the base of Mark's throat, then carefully arranged two blood-red petals around it. A crimson signature against pale skin.
+  </p>
+
+  <p>
+    Moments later, Arin had vanished into the shadows of the Sink.
+  </p>
+
+  <p>
+    The city awoke to the chaos of the discovery, but inside Tirian's office, the air remained filtered and calm. Tirian sat in his high-backed velvet chair, a leather-bound notebook resting on his knee. Opposite him sat Raphael, looking uncharacteristically tense.
+  </p>
+
+  <p>
+    "You seem preoccupied today, Raphael," Tirian said, his voice a stabilising frequency. "The gala took a lot out of everyone, it seems."
+  </p>
+
+  <p>
+    Raphael gripped the armrests. "Mark was an idiot, Dr. Tirian. But he was a visible idiot. Now, the city is looking for someone to blame for the 'Veridian Thorn'..."
+  </p>
+
+  <p>
+    A sharp pounding on the office door cut him off. Officer Vance and his partner pushed their way into the room.
+  </p>
+
+  <p>
+    "Raphael. We knew we'd find you here," Officer Vance sneered. "Therapy is for people with a conscience. You're just looking for an alibi."
+  </p>
+
+  <p>
+    Tirian stood slowly. "Officer Vance, this is a private session. My patient is entitled to confidentiality."
+  </p>
+
+  <p>
+    "He's entitled to a lawyer, Maxwell," Officer Vance countered. "Witnesses saw you arguing with Thorne at the gala. Then you vanish, and ten minutes later, Thorne is found with a thorn at his throat. It's a bit too 'artistic' for a coincidence, don't you think?"
+  </p>
+
+  <p>
+    Raphael let out a cold laugh. "See what I mean? They think I'm a poet now."
+  </p>
+
+  <p>
+    Tirian watched the exchange with clinical detachment, his mind evaluating the erratic behaviour of the police. They were aggressively chasing a ghost, completely blind to the true nature of the phantom assassin operating in their city.
+  </p>
+
+  <p>
+    "Gentlemen," Tirian interrupted, his tone firm. "If you must question my patient, do it at the station."
+  </p>
+
+  <p>
+    Officer Vance glared at Tirian, then at Raphael.
+  </p>
+
+  <p>
+    "Fine. Let's go, Raphael. We have a lot more to discuss regarding that 'Veridian' signature."
+  </p>
+
+  <p>
+    As they led Raphael out, he paused at the door, glancing back at Tirian with a smirk.
+  </p>
+
+  <p>
+    "Sorry for the interruption, Doc. I'll make sure to double the fee for the 'stress' of this session."
+  </p>
+
+  <p>
+    Tirian waited until the door clicked shut. He sat back down, stared out of the window for some time, then picked up his pen and drew a circle.
+  </p>
+
+    </article>
+
+    <div class="navigation">
+      <a href="crimson-trails.html">← Book details</a>
+      <span>Chapter Two of Crimson Trails</span>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 Luminous Ink · M.L.
+    <p>Silence, Put Into Words.</p>
+  </footer>
+<script>
+  const progressBar = document.getElementById("progressBar");
+const story = document.querySelector(".story");
+
+function updateReadingProgress() {
+  if (document.body.classList.contains("horizontal-reading")) {
+    const maxScroll = story.scrollWidth - story.clientWidth;
+
+    const progress = maxScroll > 0
+      ? (story.scrollLeft / maxScroll) * 100
+      : 0;
+
+    progressBar.style.width = progress + "%";
+  } else {
+    const storyTop = story.getBoundingClientRect().top + window.scrollY;
+    const maxScroll = story.scrollHeight - window.innerHeight;
+
+    const progress = maxScroll > 0
+      ? ((window.scrollY - storyTop) / maxScroll) * 100
+      : 0;
+
+    progressBar.style.width =
+      Math.min(100, Math.max(0, progress)) + "%";
+  }
+}
+
+window.addEventListener("scroll", updateReadingProgress);
+story.addEventListener("scroll", updateReadingProgress);
+  const verticalBtn = document.getElementById("verticalBtn");
+  const horizontalBtn = document.getElementById("horizontalBtn");
+
+  verticalBtn.addEventListener("click", function () {
+    document.body.classList.remove("horizontal-reading");
+
+    verticalBtn.classList.add("active");
+    horizontalBtn.classList.remove("active");
+  });
+
+  horizontalBtn.addEventListener("click", function () {
+    document.body.classList.add("horizontal-reading");
+
+    horizontalBtn.classList.add("active");
+    verticalBtn.classList.remove("active");
+  });
+  const midnightBtn = document.getElementById("midnightBtn");
+const paperBtn = document.getElementById("paperBtn");
+const sepiaBtn = document.getElementById("sepiaBtn");
+
+midnightBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-paper", "theme-sepia");
+  document.body.classList.add("theme-midnight");
+});
+
+paperBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-midnight", "theme-sepia");
+  document.body.classList.add("theme-paper");
+});
+
+sepiaBtn.addEventListener("click", function () {
+  document.body.classList.remove("theme-midnight", "theme-paper");
+  document.body.classList.add("theme-sepia");
+});
+  const storyParagraphs = document.querySelectorAll(".story p");
+
+const increaseFont = document.getElementById("increaseFont");
+const decreaseFont = document.getElementById("decreaseFont");
+
+let currentFontSize = 16;
+
+increaseFont.addEventListener("click", function () {
+  if (currentFontSize < 26) {
+    currentFontSize += 1;
+
+    storyParagraphs.forEach(function (paragraph) {
+      paragraph.style.fontSize = currentFontSize + "px";
+    });
+  }
+});
+
+decreaseFont.addEventListener("click", function () {
+  if (currentFontSize > 12) {
+    currentFontSize -= 1;
+
+    storyParagraphs.forEach(function (paragraph) {
+      paragraph.style.fontSize = currentFontSize + "px";
+    });
+  }
+});
+</script>
+</body>
+</html>
