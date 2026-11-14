@@ -85,9 +85,24 @@
       line-height: 2.5;
     }
 
-    .categories span {
-      margin: 0 12px;
-    }
+    .categories button {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid #343a3d;
+  padding: 10px 18px;
+  margin: 6px;
+  border-radius: 25px;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categories button:hover {
+  background: var(--gold);
+  color: var(--background);
+  border-color: var(--gold);
+}
 
     .gallery {
       max-width: 1100px;
@@ -188,10 +203,11 @@
   </section>
 
   <div class="categories">
-    <span>Open Skies</span>
-    <span>In Bloom</span>
-    <span>Nature's Canvas</span>
-    <span>Little Moments</span>
+  <button onclick="filterGallery('all')">All Photos</button>
+  <button onclick="filterGallery('sky')">Open Skies</button>
+  <button onclick="filterGallery('bloom')">In Bloom</button>
+  <button onclick="filterGallery('nature')">Nature's Canvas</button>
+  <button onclick="filterGallery('moments')">Little Moments</button>
   </div>
 
   
@@ -256,6 +272,18 @@
   <footer>
     © 2026 Luminous Ink · Silence, Put Into Words.
   </footer>
+  <script>
+  function filterGallery(category) {
+    const photos = document.querySelectorAll('.photo-card');
 
+    photos.forEach(photo => {
+      if (category === 'all' || photo.dataset.category === category) {
+        photo.style.display = 'block';
+      } else {
+        photo.style.display = 'none';
+      }
+    });
+  }
+  </script>
 </body>
 </html>
