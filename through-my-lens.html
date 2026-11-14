@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Through My Lens | Luminous Ink</title>
+
+  <style>
+    :root {
+      --background: #0D1216;
+      --gold: #E1B373;
+      --ivory: #F5F0E6;
+      --muted: #B9B4AA;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--ivory);
+      font-family: Georgia, serif;
+    }
+
+    header {
+      padding: 22px 7%;
+      border-bottom: 1px solid #343a3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .brand {
+      color: var(--gold);
+      letter-spacing: 3px;
+      font-size: 14px;
+    }
+
+    nav a {
+      color: var(--ivory);
+      text-decoration: none;
+      font-size: 13px;
+      margin-left: 18px;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 85px 20px 65px;
+    }
+
+    .hero h1 {
+      color: var(--gold);
+      font-size: clamp(36px, 7vw, 58px);
+      font-weight: normal;
+      font-style: italic;
+      margin: 0 0 15px;
+    }
+
+    .hero h2 {
+      font-size: 18px;
+      font-weight: normal;
+      letter-spacing: 2px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.8;
+      margin-top: 25px;
+    }
+
+    .categories {
+      text-align: center;
+      padding: 20px;
+      color: var(--gold);
+      line-height: 2.5;
+    }
+
+    .categories span {
+      margin: 0 12px;
+    }
+
+    .gallery {
+      max-width: 1100px;
+      margin: 30px auto 80px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .empty-message {
+      color: var(--muted);
+      padding: 60px 15px;
+      line-height: 1.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      border-top: 1px solid #343a3d;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        justify-content: center;
+      }
+
+      nav {
+        text-align: center;
+      }
+
+      nav a {
+        margin: 0 7px;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">LUMINOUS INK</div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="library.html">Library</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Through My Lens</h1>
+    <h2>The World, As I See It.</h2>
+
+    <p>
+      Fragments of beauty captured along the way.<br>
+      Little moments of the world, just as I found them.
+    </p>
+  </section>
+
+  <div class="categories">
+    <span>Open Skies</span>
+    <span>In Bloom</span>
+    <span>Nature's Canvas</span>
+    <span>Little Moments</span>
+  </div>
+
+  <section class="gallery">
+    <div class="empty-message">
+      A collection of little wonders, captured through my lens.<br>
+      Photographs coming soon.
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Luminous Ink · Silence, Put Into Words.
+  </footer>
+
+</body>
+</html>
