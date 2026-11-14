@@ -150,6 +150,49 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
+    /* ALBUM COLLECTION */
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-bottom: 40px;
+}
+
+.album-card {
+  background: #151c21;
+  border: 1px solid #343a3d;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.album-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+}
+
+.album-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.album-card h3 {
+  color: var(--gold);
+  font-weight: normal;
+  font-size: 17px;
+  margin: 16px 8px 5px;
+}
+
+.album-card p {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 5px 8px 16px;
+}
 
 .photo-card {
   overflow: hidden;
@@ -174,6 +217,9 @@
   .photo-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+  }
+  .album-card img {
+  height: 145px;
   }
 }
 
@@ -202,19 +248,75 @@
     </p>
   </section>
 
-  <div class="categories">
-  <button onclick="filterGallery('all')">All Photos</button>
-  <button onclick="filterGallery('sky')">Open Skies</button>
-  <button onclick="filterGallery('bloom')">In Bloom</button>
-  <button onclick="filterGallery('nature')">Nature's Canvas</button>
-  <button onclick="filterGallery('moments')">Little Moments</button>
+  <div class="album-grid">
+
+  <div class="album-card" onclick="openAlbum('sky')">
+    <img src="IMG-20260209-WA0038.jpg" alt="Open Skies">
+    <h3>Open Skies</h3>
+    <p>3 photographs</p>
+  </div>
+
+  <div class="album-card" onclick="openAlbum('bloom')">
+    <img src="20260619_092851.jpg" alt="In Bloom">
+    <h3>In Bloom</h3>
+    <p>3 photographs</p>
+  </div>
+
+  <div class="album-card" onclick="openAlbum('nature')">
+    <img src="IMG-20260528-WA0010.jpg" alt="Nature's Canvas">
+    <h3>Nature's Canvas</h3>
+    <p>3 photographs</p>
+  </div>
+
+  <div class="album-card" onclick="openAlbum('moments')">
+    <img src="IMG-20261017-WA0014.jpg" alt="Little Moments">
+    <h3>Little Moments</h3>
+    <p>3 photographs</p>
+  </div>
+
   </div>
 
   
 
+
 <section class="gallery">
 
-  <div class="photo-grid">
+  <!-- ALBUM COVERS -->
+  <div class="album-grid" id="albumGrid">
+
+    <div class="album-card" onclick="openAlbum('sky')">
+      <img src="IMG-20260209-WA0038.jpg" alt="Open Skies">
+      <h3>Open Skies</h3>
+      <p>3 photographs</p>
+    </div>
+
+    <div class="album-card" onclick="openAlbum('bloom')">
+      <img src="20260619_092851.jpg" alt="In Bloom">
+      <h3>In Bloom</h3>
+      <p>3 photographs</p>
+    </div>
+
+    <div class="album-card" onclick="openAlbum('nature')">
+      <img src="IMG-20260528-WA0010.jpg" alt="Nature's Canvas">
+      <h3>Nature's Canvas</h3>
+      <p>3 photographs</p>
+    </div>
+
+    <div class="album-card" onclick="openAlbum('moments')">
+      <img src="IMG-20261017-WA0014.jpg" alt="Little Moments">
+      <h3>Little Moments</h3>
+      <p>3 photographs</p>
+    </div>
+
+  </div>
+
+  <!-- BACK TO ALBUMS -->
+  <button id="backButton" onclick="closeAlbum()" style="display:none;">
+    ← Back to Albums
+  </button>
+
+  <!-- PHOTOGRAPHS -->
+  <div class="photo-grid" id="photoGrid" style="display:none;">
 
     <div class="photo-card" data-category="sky">
       <img src="IMG-20260209-WA0038.jpg" alt="Sky photograph">
@@ -239,51 +341,71 @@
     <div class="photo-card" data-category="bloom">
       <img src="IMG-20260610-WA0007.jpg" alt="Flower photograph">
     </div>
+
     <div class="photo-card" data-category="nature">
-  <img src="IMG-20260528-WA0010.jpg" alt="Nature photograph">
-</div>
+      <img src="IMG-20260528-WA0010.jpg" alt="Nature photograph">
+    </div>
 
-<div class="photo-card" data-category="nature">
-  <img src="IMG-20260429-WA0097.jpg" alt="Nature photograph">
-</div>
+    <div class="photo-card" data-category="nature">
+      <img src="IMG-20260429-WA0097.jpg" alt="Nature photograph">
+    </div>
 
-<div class="photo-card" data-category="nature">
-  <img src="20260730_153430.jpg" alt="Nature photograph">
-</div>
+    <div class="photo-card" data-category="nature">
+      <img src="20260730_153430.jpg" alt="Nature photograph">
+    </div>
+
     <div class="photo-card" data-category="moments">
-  <img src="IMG-20261017-WA0014.jpg" alt="A little moment">
-</div>
+      <img src="IMG-20261017-WA0014.jpg" alt="A little moment">
+    </div>
 
-<div class="photo-card" data-category="moments">
-  <img src="IMG-20261007-WA0007.jpg" alt="A little moment">
-</div>
+    <div class="photo-card" data-category="moments">
+      <img src="IMG-20261007-WA0007.jpg" alt="A little moment">
+    </div>
 
-<div class="photo-card" data-category="moments">
-  <img src="IMG-20260714-WA0119.jpg" alt="A little moment">
-</div>
+    <div class="photo-card" data-category="moments">
+      <img src="IMG-20260714-WA0119.jpg" alt="A little moment">
+    </div>
 
   </div>
 
 </section>
 
-</section>
 
 
   <footer>
     © 2026 Luminous Ink · Silence, Put Into Words.
   </footer>
-  <script>
-  function filterGallery(category) {
+  
+<script>
+  function openAlbum(category) {
+    const albumGrid = document.getElementById('albumGrid');
+    const photoGrid = document.getElementById('photoGrid');
+    const backButton = document.getElementById('backButton');
     const photos = document.querySelectorAll('.photo-card');
 
+    albumGrid.style.display = 'none';
+    photoGrid.style.display = 'grid';
+    backButton.style.display = 'block';
+
     photos.forEach(photo => {
-      if (category === 'all' || photo.dataset.category === category) {
+      if (photo.dataset.category === category) {
         photo.style.display = 'block';
       } else {
         photo.style.display = 'none';
       }
     });
   }
-  </script>
+
+  function closeAlbum() {
+    document.getElementById('albumGrid').style.display = 'grid';
+    document.getElementById('photoGrid').style.display = 'none';
+    document.getElementById('backButton').style.display = 'none';
+
+    document.querySelectorAll('.photo-card').forEach(photo => {
+      photo.style.display = 'block';
+    });
+  }
+</script>
+
 </body>
 </html>
